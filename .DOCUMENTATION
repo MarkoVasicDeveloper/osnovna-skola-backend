@@ -1,0 +1,56 @@
+Teacher routs:
+    - http://localhost:3000/api/addTeacher (post)
+        dto: {name: string, surname: string, email: string, password: string, scholl: string}
+        possible error: - 1001 ('Email is taken!')
+                        - 1002 ('Server error')
+    - http://localhost:3000/api/editTeacher (post)
+        dto: {name?: string, surname?: string, email: string, password?: string, scholl?: string}
+        possible error: - 1003 ('Teacher is not found!')
+
+    - http://localhost:3000/api/getTeacherById/:id (post)
+        possible error: - 1003 ('Teacher is not found!')
+
+    - http://localhost:3000/api/getTeacherByEmail/ (post)
+        dto: {email: email}
+        possible error: - 1003 ('Teacher is not found!')
+
+Student routes:
+    - http://localhost:3000/api/addStudent (post)
+        dto: {school: string, name: string}
+        possible error: - -2003 ('Student alredy exists')
+
+    - http://localhost:3000/api/editStudent/:id (post)
+        dto: {school?: string, name?: string}
+        possible error: -2002 ('Student is not found')
+
+    - http://localhost:3000/api/getStudentById/:id (get)
+        possible error: -2002 ('Student is not found')
+
+    - http://localhost:3000/api/getStudentBySchool (post)
+        dto: {school: string}
+        possible error: -2002 ('Student is not found')
+
+Lessons routes:
+    - http://localhost:3000/api/getAllLessonsByGrade (post)
+        dto: {grade: number, schoolSubject: string}
+        possible ok: 10000 ('Lessons not found')
+        possible ok: 10001 ('')
+
+    - http://localhost:3000/api/createLesson (post)
+        dto: {class: string, schoolSubject: string, title: string}
+        possible error: -3000 ('Lesson is not saved')
+
+Questions routes:
+    -http://localhost:3000/api/addQuestions (post)
+        dto: {question: string, corectAnswer: string, incorectAnswer_1: string, 
+          incorectAnswer_2: string, incorectAnswer_3:string, explanation: string
+          grede: number, lesson: string, schoolSubject: string}
+        possible error: -4000 ('Error saving question')
+
+    -http://localhost:3000/api/getQuestion (post)
+        dto: {grede: number, lesson: string, schoolSubject: string}
+        possible error: -4001 ('Questions is not found')
+
+    -http://localhost:3000/api/getExamQuestion (post)
+        dto: {grede: number, schoolSubject: string}
+        possible error: -4002 ('Questions is not found')
